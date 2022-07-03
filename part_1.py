@@ -15,7 +15,6 @@
 # print(getattr(TravelBlog, 'total_blogs'))
 
 ######################## Подвиг 9
-sdsf
 # class Figure:
 #     type_fig = 'ellipse'
 #     color = "red"
