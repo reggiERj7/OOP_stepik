@@ -147,5 +147,3 @@
 
 # print(*tr.translate('go'))
 
-
-### dfgdfg
