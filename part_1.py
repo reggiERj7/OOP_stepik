@@ -147,201 +147,66 @@
 
 # print(*tr.translate('go'))
 
-<<<<<<< HEAD
-####### 1.5 ИНИЦИАЛИЗАТОР __init__ и финализатор __del__
+##################### 1.8 ИСПЫТАНИЕ СВОЙСТВАМИ И МЕТОДАМИ
+# class Router:
 
-######################## ПОДВИГ 2
-
-# class Money:
-
-#     def __init__(self, money):
-#         self.money = money
-
-
-# my_money = Money(100)
-# your_money = Money(1000)
-
-######################## ПОДВИГ 3
-
-# class Point:
-#     def __init__(self, x: int, y: int, color = "black"):
-#         self.x = x
-#         self.y = y
-#         self.color = color
-
-#     def __del__(self):
-#         pass
-  
-# points = [Point(2*i+1, 2*i+1) for i in range(0,1000)]
-# points[1].color = 'yellow'
-
-
-######################## ПОДВИГ 4
-
-# import random
-# class Line:
-    
-#     def __init__(self, a, b, c, d):
-#         self.sp = (a, b)
-#         self.ep = (c, d)
-
-# class Rect:
-    
-#     def __init__(self, a, b, c, d):
-#         self.sp = (a, b)
-#         self.ep = (c, d)
-
-# class Ellipse:
-    
-#     def __init__(self, a, b, c, d):
-#         self.sp = (a, b)
-#         self.ep = (c, d)
-
-# elements = [(Line, React, Ellipse)[random.randint(0, 2)](1,2,3,4) for i in range(217)]
-# for k in elements:
-#     if isinstance(k, Line):
-#         k.sp = k.ep = 0,0
-
-
-######################## ПОДВИГ 5
-
-# class TriangleChecker:
-
-#     dic = {}
-
-#     def __init__(self, a: int, b: int, c: int):
-#         self.a = a
-#         self.b = b
-#         self.c = c
-#         self.dic[f'{type(self.a)}'] = self.a
-#         self.dic[f'{type(self.b)}'] = self.b
-#         self.dic[f'{type(self.c)}'] = self.c
-
-#     def is_triangle(self) -> int:
-#         for key, value in self.dic.items():
-#             if 'int' in key or 'float' in key or value <= 0:
-#                 return 3
-#         return 1
-
-# a, b, c = map(float, input().split())
-# print(a)
-# tr = TriangleChecker(a, b, c)
-# print(tr.is_triangle())
-
-
-######################## ПОДВИГ 6
-
-
-# class Graph:
-
-#     def __init__(self, data):
-#         self.data = data[:]
-#         self.is_show = True
-
-#     def set_data(self, data):
-#         self.data = data[:]
-    
-#     def show_table(self):
-#         print(" ".join(map(str, self.data)))
-
-#     def show_graph(self):
-#         print(f'Графическое отображение данных: {" ".join(map(str, self.data))}')
-
-#     def show_bar(self):
-#         print(f'Столбчатая диаграмма: {" ".join(map(str, self.data))}')
-
-#     def set_show(self, fl_show = True):
-#         self.is_show = fl_show
-#         if self.is_show is False:
-#             return 'Отображение данных закрыто'
-     
-# data_graph = list(map(int, input().split()))
-
-# gr = Graph(data_graph)
-# gr.show_bar()
-# print(gr.set_show(False))
-
-
-######################## ПОДВИГ 7
-
-# class CPU:
-
-#     def __init__(self, name, fr):
-#         self.name = name
-#         self.fr = fr
-
-# class Memory:
-
-#     def __init__(self, name, volume):
-#         self.name = name
-#         self.volume = volume
-
-# class MotherBoard:
-
-#     def __init__(self, name, cpu, *mems):
-#         self.name = name
-#         self.cpu = cpu
-#         self.total_mem_slots = 4
-#         self.mem_slots = mems[:self.total_mem_slots]
-
-
-#     def get_config(self):  
-#         return [f'Материнская плата: {self.name}', 
-#         f'Центральный процессор: {self.cpu.name}, {self.cpu.fr}', 
-#         f'Слотов памяти: {self.total_mem_slots}', 
-#         'Память: ' + "; ".join(map(lambda x: f"{x.name} - {x.volume}", self.mem_slots))]
-
-
-# mb = MotherBoard("MSI", CPU("Inteal", 4000), Memory('Patriot', 2500), Memory("patriot", 4000))
-# mb.get_config()
-
-
-######################## ПОДВИГ 8
-
-# class Cart:
-    
 #     def __init__(self):
-#         self.goods = []
+#         self.buffer = []
+#         self.servers = {}
+
+#     def link(self, server):
+#         self.servers[server.ip] = server
+#         server.router = self
     
-#     def add(self, cart):
-#         self.goods.append(cart)
+#     def unlink(self, server):
+#         tmp = self.servers.pop(server.ip, False)
+#         if tmp:
+#             tmp.router = None
+
+#     def send_data(self):
+#         for i in self.buffer:
+#             if i.ip in self.servers:
+#                 self.servers[i.ip].buffer.append(i)
+#         self.buffer.clear()
     
-#     def remove(self, indx):
-#         self.goods.pop(indx)
+# class Server:
 
-#     def get_list(self):
-#         return [f'{i.name}: {i.price}' for i in self.goods]
+#     n = 1
+#     def __init__(self):
+#         self.buffer = []
+#         self.ip = Server.n
+#         Server.n += 1
+#         self.router = None
 
-# class Table:
-    
-#     def __init__(self, name, price):
-#         self.name = name
-#         self.price = price
+#     def send_data(self, data):
+#         if self.router:
+#             self.router.buffer.append(data)
 
-# class TV:
-    
-#     def __init__(self, name, price):
-#         self.name = name
-#         self.price = price
+#     def get_data(self):
+#         b = self.buffer[:]
+#         self.buffer.clear()
+#         return b
+        
+#     def get_ip(self):
+#         return self.ip
 
-# class Notebook:
-    
-#     def __init__(self, name, price):
-#         self.name = name
-#         self.price = price
+# class Data:
+#     def __init__(self, data, ip):
+#         self.data = data
+#         self.ip = ip
 
-# class Cup:
-    
-#     def __init__(self, name, price):
-#         self.name = name
-#         self.price = price
-
-
-# cart = Cart()
-# cart.add(Notebook("Lenovo", 4000)) 
-# cart.add(Notebook("Lenovo", 4000)) 
-# cart.add(TV("Samsung", 5000))
-# cart.add(TV("LG", 55000))
-# cart.add(Cup("Личная", 200))
-# cart.add(Table("Личная", 200))
-
+# router = Router()
+# sv_from = Server()
+# sv_from2 = Server()
+# router.link(sv_from)
+# router.link(sv_from2)
+# # router.link(Server())
+# # router.link(Server())
+# sv_to = Server()
+# router.link(sv_to)
+# sv_from.send_data(Data("Hello", sv_to.get_ip()))
+# sv_from2.send_data(Data("Hello", sv_to.get_ip()))
+# sv_to.send_data(Data("Hi", sv_from.get_ip()))
+# router.send_data()
+# msg_lst_from = sv_from.get_data()
+# msg_lst_to = sv_to.get_data()
