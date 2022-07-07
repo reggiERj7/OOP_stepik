@@ -248,4 +248,25 @@
 # # p.remove_phone(0)
 # print(p.get_phone())
 
+###########################  ПОДВИГ 9
 
+# class LineTo:
+
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+
+# class PathLines:
+
+#     def __init__(self, *args):
+#         self.coords = list((LineTo(0, 0), ) + args)
+    
+#     def get_path(self):
+#         return self.coords[1:]
+
+#     def get_length(self):
+#         tmp = ((self.coords[i-1], self.coords[i]) for i in range(1, len(self.coords)))
+#         return sum(map(lambda k: ((k[0].x - k[1].x)**2 + (k[0].y - k[1].y)**2)**0.5, tmp))        
+
+#     def add_line(self, line):
+#         self.coords.append(line)
